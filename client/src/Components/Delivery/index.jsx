@@ -50,7 +50,7 @@ const Delivery = () => {
         <>
             <DeliveryCarousel />
             {/*<Brand/> */}
-            <div className="flex justify-between flex-wrap">
+            <div className="lg:px-20 flex justify-between flex-wrap">
                 {restaurantList.map((restaurant) => (
                     <RestaurantCard {...restaurant} key={restaurant._id} />
                 ))}

@@ -15,7 +15,7 @@ const NightLifeCarousel = () => {
         prevArrow: <PrevArrow/>,
       };
     return (
-        <div className="w-full">
+        <div className="w-full lg:px-20">
             <Slider {...settings}>
             <PictureCarouselCard/>
             <PictureCarouselCard/>

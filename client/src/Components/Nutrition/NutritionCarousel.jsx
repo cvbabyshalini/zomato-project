@@ -1,12 +1,8 @@
 import React from 'react'
-import Slider from "react-slick"
-
-// components
-import DeliveryCategory from './DeliveryCategory';
-import { NextArrow } from '../CarouselArrow';
-import { PrevArrow } from '../CarouselArrow';
-
-const DeliveryCarousel = () => {
+import Slider from 'react-slick';
+import NutritionCarouselCard from './NutritionCarouselCard'
+import { NextArrow,PrevArrow } from '../CarouselArrow';
+const NutritionCarousel = () => {
     const categories = [
         {
             image:
@@ -48,13 +44,10 @@ const DeliveryCarousel = () => {
       };
     return (
         <>
-        <h1 className="text-xl font-semibold mb-4 lg:text-3xl lg:text-gray-800 lg:px-28">
-            Inspiration for your first order
-        </h1>
-        <div className="lg:hidden flex gap-3 lg:gap-0 flex-wrap justify-between">
+            <div className="lg:hidden flex gap-3 lg:gap-0 flex-wrap justify-between">
             {
                 categories.map((food) => (
-                    <DeliveryCategory {...food} />
+                    <NutritionCarouselCard {...food} />
                 ))
             }
         </div>
@@ -62,11 +55,12 @@ const DeliveryCarousel = () => {
         <div className="hidden lg:block lg:px-20">
             <Slider {...settings}>
                 {categories.map((food) => (
-                    <DeliveryCategory {...food} />
+                    <NutritionCarouselCard {...food} />
                 ))}
             </Slider>
         </div>
         </>
-    );
-};
-export default DeliveryCarousel;
+    )
+}
+
+export default NutritionCarousel
