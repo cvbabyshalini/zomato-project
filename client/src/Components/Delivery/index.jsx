@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 //components
 import DeliveryCarousel from './DeliveryCarousel'
 import Brand from './Brand'
-import RestaurantCard from '../restaurantCard'
+import RestaurantCard from '../RestaurantCard'
 const Delivery = () => {
     const [restaurantList, setRestaurantList] = useState([
         {
@@ -50,7 +50,7 @@ const Delivery = () => {
         <>
             <DeliveryCarousel />
             {/*<Brand/> */}
-            <div className="lg:px-20 flex justify-between flex-wrap">
+            <div className="lg:px-16 lg:mr-32 flex justify-between flex-wrap">
                 {restaurantList.map((restaurant) => (
                     <RestaurantCard {...restaurant} key={restaurant._id} />
                 ))}

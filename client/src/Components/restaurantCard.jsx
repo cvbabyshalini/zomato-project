@@ -1,7 +1,7 @@
 import React from 'react'
 import { AiTwotoneStar } from "react-icons/ai"
 
-const restaurantCard = (props) => {
+const RestaurantCard = (props) => {
     return (
         <>
             <div className="bg-white p-4 w-full mb-4 rounded-2xl transition duration-700 ease-in-out hover:shadow-lg md:w-1/2 lg:w-1/3">
@@ -46,4 +46,4 @@ const restaurantCard = (props) => {
     )
 }
 
-export default restaurantCard;
+export default RestaurantCard;

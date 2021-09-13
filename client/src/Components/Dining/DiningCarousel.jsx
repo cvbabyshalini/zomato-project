@@ -1,31 +1,59 @@
-import React from 'react'
-import Slider from 'react-slick'
-import { NextArrow, PrevArrow } from '../CarouselArrow'
+import React from "react";
+import Slider from "react-slick";
 
-//components
-import PictureCarouselCard from '../PictureCarousel'
+// components
+import PictureCarouselCard from "../PictureCarousel";
+import { NextArrow, PrevArrow } from "../CarouselArrow";
+
 const DiningCarousel = () => {
-    const settings = {
-        arrows: true,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 4,
-        slidesToScroll: 1,
-        nextArrow: <NextArrow/>,
-        prevArrow: <PrevArrow/>,
-      };
-    return (
-        <div className="w-full lg:px-20">
-            <Slider {...settings}>
-            <PictureCarouselCard/>
-            <PictureCarouselCard/>
-            <PictureCarouselCard/>
-            <PictureCarouselCard/>
-            <PictureCarouselCard/>
-            <PictureCarouselCard/>
-            </Slider>
-        </div>
-    )
-}
+  const settings = {
+    dots: true,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 4,
+    initialSlide: 0,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
+  return (
+    <div className="w-full lg:px-20">
+      <Slider {...settings}>
+        <PictureCarouselCard />
+        <PictureCarouselCard />
+        <PictureCarouselCard />
+        <PictureCarouselCard />
+        <PictureCarouselCard />
+        <PictureCarouselCard />
+        <PictureCarouselCard />
+      </Slider>
+    </div>
+  );
+};
 
-export default DiningCarousel
+export default DiningCarousel;

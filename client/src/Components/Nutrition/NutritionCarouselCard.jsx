@@ -1,48 +1,32 @@
-import React from 'react'
+import React from "react";
 
 const NutritionCard = ({ image, title }) => {
-    return (
-        <>
-            <div className="bg-white shadow rounded-md w-24 md:w-56 lg:hidden">
-                <div className="w-full h-24">
-                    <img 
-                        src={image}
-                        alt="food" 
-                        className="w-full h-full object-cover rounded-t-md"
-                    />
-                </div>
-                <div>
-                    <h3 className="text-sm my-1 text-center font-light">{title}</h3>
-                </div>
-            </div>
-        </>
-    );
+  return (
+    <>
+      <div className=" bg-white shadow rounded-md w-24 h-full px-3 mt-8  md:px-4  md:w-56">
+        <div className="w-full h-12 md:h-36">
+          <img
+            src={image}
+            alt="food"
+            className="w-full h-full object-cover rounded-t-md"
+          />
+        </div>
+        <div>
+          <h3 className="text-sm my-1 text-center font-light md:text-xl">
+            {title}
+          </h3>
+        </div>
+      </div>
+    </>
+  );
 };
-const NutritionLgCard = ({ image, title }) => {
-    return (
-        <>
-            <div className="hidden lg:block mx-auto w-64 h-48">
-                <div className="w-full h-full">
-                    <img 
-                        src={image} 
-                        alt="food" 
-                        className="w-full h-full object-cover rounded-md shadow-lg"
-                    />
-                </div>
-                <div>
-                    <h3 className="text-xl my-1 font-medium">{title}</h3>
-                </div>
-            </div>
-        </>
-    );
-} 
 
 const NutritionCarouselCard = (props) => {
-    return (
-        <>
-            <NutritionCard {...props} />
-        </>
-    )
-}
+  return (
+    <>
+      <NutritionCard {...props} />
+    </>
+  );
+};
 
 export default NutritionCarouselCard;
