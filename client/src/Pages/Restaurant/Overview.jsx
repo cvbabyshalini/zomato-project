@@ -4,13 +4,14 @@ import { IoMdArrowDropright } from "react-icons/io"
 import Slider from 'react-slick'
 import { NextArrow, PrevArrow } from '../../Components/CarouselArrow'
 import ReactStars from "react-rating-stars-component"
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 
 
 //components
 import MenuCollection from '../../Components/Restaurant/MenuCollection'
 import MenuSimilarRestaurantcard from '../../Components/Restaurant/MenuSimilarRestaurantcard'
 import ReviewCard from '../../Components/Restaurant/Reviews/ReviewCard'
+import Mapview from '../../Components/Restaurant/Mapview'
+
 
 const Overview = () => {
     const { id } = useParams();
@@ -99,6 +100,13 @@ const Overview = () => {
                             activeColor="#ffd700"
                         />,
                     </div>
+                    <div className="my-4 w-full md:hidden flex flex-col gap-4">
+                    <Mapview
+                    title="Mumbai Express"
+                    phno="+91 9254871235"
+                    mapLocation={[12.988134202889283, 77.59405893120281]}
+                    address="15, Sigma Central Mall, Vasanth Nagar, Cunningham Road, Bangalore"/> 
+                    </div>
                     <div className="my-4" flex flex-col gap-4>
                         <ReviewCard />
                         <ReviewCard />
@@ -107,28 +115,13 @@ const Overview = () => {
                 </div>
                 <aside
                     style={{ height: "fit-content" }}
-                    className="hidden md:block md:w-4/12 sticky rounded-xl top-2 bg-white p-3 shadow-md"
+                    className="hidden md:flex md:w-4/12 sticky rounded-xl top-2 bg-white p-3 shadow-md flex flex-col gap-4"
                 >
-                    <div>
-                        <h4 className="text-xl font-medium">Call</h4>
-                        <h5 className="text-zomato-400 font-medium">+91 8847192299</h5>
-                    </div>
-                    <div>
-                        <h4 className="text-xl font-medium">Direction</h4>
-                        <div className="w-full h-48">
-                        <MapContainer center={[12.988134202889283, 77.59405893120281]} zoom={13} scrollWheelZoom={false}>
-                            <TileLayer
-                                attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                            />
-                            <Marker position={[12.988134202889283, 77.59405893120281]}>
-                                <Popup>
-                                    A pretty CSS3 popup. <br /> Easily customizable.
-                                </Popup>
-                            </Marker>
-                        </MapContainer>
-                        </div>
-                    </div>
+                   <Mapview
+                    title="Mumbai Express"
+                    phno="+91 9254871235"
+                    mapLocation={[12.988134202889283, 77.59405893120281]}
+                    address="15, Sigma Central Mall, Vasanth Nagar, Cunningham Road, Bangalore"/> 
                 </aside>
             </div>
         </>
