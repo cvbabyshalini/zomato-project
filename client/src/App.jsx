@@ -10,6 +10,8 @@ import Home from "./Pages/Home";
 import Overview from "./Pages/Restaurant/Overview";
 import OrderOnline from "./Pages/Restaurant/OrderOnline";
 import Reviews from "./Pages/Restaurant/Reviews";
+import Menu from "./Pages/Restaurant/Menu";
+import Photos from "./Pages/Restaurant/Photos";
 
 
 function App() {
@@ -40,12 +42,12 @@ function App() {
       <RestaurantLayoutHOC 
         path="/restaurant/:id/menu" 
         exact 
-        component={Temp}
+        component={Menu}
       />
       <RestaurantLayoutHOC 
         path="/restaurant/:id/photos" 
         exact 
-        component={Temp}
+        component={Photos}
       />
     </>
   );

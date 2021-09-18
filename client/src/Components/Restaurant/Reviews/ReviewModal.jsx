@@ -9,7 +9,6 @@ export default function ReviewModal({isOpen, setIsOpen, handleRating, ...props})
 
   return (
     <>
-
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog
           as="div"
