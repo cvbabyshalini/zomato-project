@@ -6,14 +6,10 @@ import MenuCategory from './MenuCategory';
 const MenuListContainer = (props) => {
     const [selected, setSelected] = useState("");
     const onClickHandler = (e) => {
-        const onClickHandler = (e) => {
-        
-            if(e.target.getid){
+            if(e.target.id){
                 setSelected(e.target.id);
             }
             return;
-        }
-       
     };
     return (
         <>
@@ -23,31 +19,7 @@ const MenuListContainer = (props) => {
                     items={["", ""]}
                     onClickHandler={onClickHandler}
                     isActive={selected === "Recommended"}
-                />
-                <MenuCategory 
-                    name="Recommended" 
-                    items={["", ""]}
-                    onClickHandler={onClickHandler}
-                    isActive={selected === "Recommended"}
-                />
-                <MenuCategory 
-                    name="Recommended" 
-                    items={["", ""]}
-                    onClickHandler={onClickHandler}
-                    isActive={selected === "Recommended"}
-                />
-                <MenuCategory 
-                    name="Recommended" 
-                    items={["", ""]}
-                    onClickHandler={onClickHandler}
-                    isActive={selected === "Recommended"}
-                />
-                <MenuCategory 
-                    name="Recommended" 
-                    items={["", ""]}
-                    onClickHandler={onClickHandler}
-                    isActive={selected === "Recommended"}
-                />
+                /> 
             </div>
         </>
     )
