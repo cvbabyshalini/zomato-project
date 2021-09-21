@@ -9,6 +9,7 @@ import ImageGrid from '../Components/Restaurant/ImageGrid'
 import RestaurantInfo from '../Components/Restaurant/RestaurantInfo'
 import InfoButtons from '../Components/Restaurant/InfoButtons'
 import TabContainer from '../Components/Restaurant/Tabs'
+import CartContainer from '../Components/Cart/CartContainer'
 
 const RestaurantLayout = (props) => {
     return (
@@ -44,6 +45,7 @@ const RestaurantLayout = (props) => {
                 </div>
                 <div className="relative">{props.children}</div>
             </div>
+            <CartContainer/>
         </>
     );
 }
