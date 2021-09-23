@@ -14,6 +14,7 @@ import Reviews from "./Pages/Restaurant/Reviews";
 import Menu from "./Pages/Restaurant/Menu";
 import Photos from "./Pages/Restaurant/Photos";
 import Checkout from "./Pages/Checkout";
+import RedirectRestaurant from "./Pages/Restaurant/Redirect";
 
 
 function App() {
@@ -22,9 +23,8 @@ function App() {
     <Route path="/" exact>
         <Redirect to="/delivery" />
     </Route>
-    <Route path="/restaurant/:id" exact>
-        <Redirect to="/restaurant/:id/overview" />
-    </Route>
+    <Route path="/restaurant/:id" exact component={RedirectRestaurant} />
+        
       <HomeLayoutHOC path="/:type" exact component={Home} />
       <RestaurantLayoutHOC 
         path="/restaurant/:id/overview" 
