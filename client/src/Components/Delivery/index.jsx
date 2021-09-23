@@ -1,51 +1,21 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { useSelector } from "react-redux"
 
 //components
 import DeliveryCarousel from './DeliveryCarousel'
 import Brand from './Brand'
 import RestaurantCard from '../RestaurantCard'
 const Delivery = () => {
-    const [restaurantList, setRestaurantList] = useState([
-        {
-            _id: "123456",
-            photos: [
-                "https://b.zmtcdn.com/data/pictures/chains/0/52860/28d7492be8697704615ddad4d285f89b_featured_v2.jpg?fit=around|771.75:416.25&crop=771.75:416.25;*,*",
-            ],
-            name: "Chai Point",
-            cuisine: ["Street Food", "Beverages", "Tea"],
-            averageCost: 100,
-            isPro: true,
-            isOff: 80,
-            durationOfdelivery: 47,
-            restaurantReviewValue: 4.1,
-        },
-        {
-            _id: "123456",
-            photos: [
-                "https://b.zmtcdn.com/data/pictures/chains/0/52860/28d7492be8697704615ddad4d285f89b_featured_v2.jpg?fit=around|771.75:416.25&crop=771.75:416.25;*,*",
-            ],
-            name: "Chai Point",
-            cuisine: ["Street Food", "Beverages", "Tea"],
-            averageCost: 100,
-            isPro: true,
-            isOff: 80,
-            durationOfdelivery: 47,
-            restaurantReviewValue: 4.1,
-        },
-        {
-            _id: "123456",
-            photos: [
-                "https://b.zmtcdn.com/data/pictures/chains/0/52860/28d7492be8697704615ddad4d285f89b_featured_v2.jpg?fit=around|771.75:416.25&crop=771.75:416.25;*,*",
-            ],
-            name: "Chai Point",
-            cuisine: ["Street Food", "Beverages", "Tea"],
-            averageCost: 100,
-            isPro: true,
-            isOff: 80,
-            durationOfdelivery: 47,
-            restaurantReviewValue: 4.1,
-        }
-    ]);
+    const [restaurantList, setRestaurantList] = useState([]);
+
+    const reduxState = useSelector(
+        (globalStore) => globalStore.restaurant.restaurants
+    );
+    
+    useEffect(() => {
+        reduxState.restaurants && setRestaurantList(reduxState.restaurants);
+    }, [reduxState.restaurants]);
+    
     return (
         <>
             <DeliveryCarousel />
