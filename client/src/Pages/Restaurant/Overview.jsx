@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { IoMdArrowDropright } from "react-icons/io"
 import Slider from 'react-slick'
 import { NextArrow, PrevArrow } from '../../Components/CarouselArrow'
 import ReactStars from "react-rating-stars-component"
+import { useSelector, useDispatch } from 'react-redux'
 
 
 //components
@@ -12,9 +13,13 @@ import MenuSimilarRestaurantcard from '../../Components/Restaurant/MenuSimilarRe
 import ReviewCard from '../../Components/Restaurant/Reviews/ReviewCard'
 import Mapview from '../../Components/Restaurant/Mapview'
 
+import { getImage } from '../../Redux/Reducer/Image/image.action'
+
 
 const Overview = () => {
+    const [menuImage, setMenuImages] = useState({images: []});
     const { id } = useParams();
+
     const settings = {
         arrows: true,
         infinite: true,
@@ -24,6 +29,23 @@ const Overview = () => {
         nextArrow: <NextArrow />,
         prevArrow: <PrevArrow />,
     };
+
+    const reduxState = useSelector(
+        (globalStore) => 
+            globalStore.restaurant.selectedRestaurant.restaurant
+    );
+
+    const dispatch = useDispatch();
+    useEffect(() => {
+        if(reduxState) {
+            dispatch(getImage(reduxState?.menuImage)).then((data) => {
+                const images = [];
+                data.payload.image.images.map(({ location }) => images.push(location));
+                setMenuImages(images);
+            }
+        );
+        }
+    }, []);
     const ratingChanged = (newRating) => {
         console.log(newRating);
     };
@@ -46,9 +68,7 @@ const Overview = () => {
                         <MenuCollection
                             menuTitle="Menu"
                             pages="3"
-                            image={["https://b.zmtcdn.com/data/menus/513/18732513/815ec0b3c5881867010f5a68233bf965.jpg",
-                            "https://b.zmtcdn.com/data/menus/425/19667425/063a70da3897860c8a376cf9f52a1852.jpg",
-                            ]}
+                            image={menuImage}
                         />
                     </div>
                     <h4 className="text-lg font-medium my-4">Cuisines</h4>
