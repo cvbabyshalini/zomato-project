@@ -17,7 +17,7 @@ import { getImage } from '../../Redux/Reducer/Image/image.action'
 
 
 const Overview = () => {
-    const [menuImage, setMenuImages] = useState({images: []});
+    const [menuImage, setMenuImages] = useState({ images: [] });
     const { id } = useParams();
 
     const settings = {
@@ -31,24 +31,28 @@ const Overview = () => {
     };
 
     const reduxState = useSelector(
-        (globalStore) => 
+        (globalStore) =>
             globalStore.restaurant.selectedRestaurant.restaurant
     );
 
     const dispatch = useDispatch();
     useEffect(() => {
-        if(reduxState) {
+        if (reduxState) {
             dispatch(getImage(reduxState?.menuImage)).then((data) => {
                 const images = [];
                 data.payload.image.images.map(({ location }) => images.push(location));
                 setMenuImages(images);
             }
-        );
+            );
         }
     }, []);
     const ratingChanged = (newRating) => {
         console.log(newRating);
     };
+
+    const getLanLong = (mapAddress) => {
+        return mapAddress?.split(",").map((item) => parseFloat(item));
+    }
     return (
         <>
             <div className="flex flex-col md:flex-row relative">
@@ -73,19 +77,15 @@ const Overview = () => {
                     </div>
                     <h4 className="text-lg font-medium my-4">Cuisines</h4>
                     <div className="flex flex-wrap gap-2">
-                        <span className="border border-gray-600 text-blue-600 px-2 py-1 rounded-full">
-                            Street Food
-                        </span>
-                        <span className="border border-gray-600 text-blue-600 px-2 py-1 rounded-full">
-                            Street Food
-                        </span>
-                        <span className="border border-gray-600 text-blue-600 px-2 py-1 rounded-full">
-                            Street Food
-                        </span>
+                        {reduxState?.cuisine.map((data) => (
+                            <span className="border border-gray-600 text-blue-600 px-2 py-1 rounded-full">
+                                {data}
+                            </span>
+                        ))}
                     </div>
                     <div className="my-4">
                         <h4 className="text-lg font-medium">Average Cost</h4>
-                        <h6>₹100 for one order (approx.)</h6>
+                        <h6>{reduxState?.averageCost} for one order (approx.)</h6>
                         <small className="text-gray-500">Exclusive of applicable taxes ans charges, if any</small>
                     </div>
                     <div className="my-4">
@@ -125,10 +125,10 @@ const Overview = () => {
                     </div>
                     <div className="my-4 w-full md:hidden flex flex-col gap-4">
                     <Mapview
-                    title="Mumbai Express"
-                    phno="+91 9254871235"
-                    mapLocation={[12.988134202889283, 77.59405893120281]}
-                    address="15, Sigma Central Mall, Vasanth Nagar, Cunningham Road, Bangalore"/> 
+                        title={reduxState?.name}
+                        phno={`+91${reduxState?.contactNumber}`}
+                        mapLocation={getLanLong(reduxState?.mapLocation)}
+                        address={reduxState?.address} />
                     </div>
                     <div className="my-4" flex flex-col gap-4>
                         <ReviewCard />
@@ -140,11 +140,11 @@ const Overview = () => {
                     style={{ height: "fit-content" }}
                     className="hidden md:flex md:w-4/12 sticky rounded-xl top-2 bg-white p-3 shadow-md flex flex-col gap-4"
                 >
-                   <Mapview
-                    title="Mumbai Express"
-                    phno="+91 9254871235"
-                    mapLocation={[12.988134202889283, 77.59405893120281]}
-                    address="15, Sigma Central Mall, Vasanth Nagar, Cunningham Road, Bangalore"/> 
+                    <Mapview
+                        title={reduxState?.name}
+                        phno={`+91${reduxState?.contactNumber}`}
+                        mapLocation={getLanLong(reduxState?.mapLocation)}
+                        address={reduxState?.address} />
                 </aside>
             </div>
         </>
