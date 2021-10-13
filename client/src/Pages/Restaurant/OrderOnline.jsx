@@ -1,14 +1,27 @@
-import React from 'react'
+import React, { useEffect, useState} from 'react'
 import { AiOutlineCompass } from "react-icons/ai"
 import { BiTimeFive } from "react-icons/bi"
+import { useDispatch, useSelector} from "react-redux"
 
 //components
 import FloatMenuBtn from '../../Components/Restaurant/Order-Online/FloatMenuBtn'
 import MenuListContainer from '../../Components/Restaurant/Order-Online/MenuListContainer'
-import FoodItem from '../../Components/Restaurant/Order-Online/FoodItem'
 import FoodList from '../../Components/Restaurant/Order-Online/FoodList'
 
+// redux actions
+import { getFoodList } from '../../Redux/Reducer/Food/food.action'
+
 const OrderOnline = () => {
+    const [menu, setMenu] = useState([]);
+    const reduxState = useSelector((globalStore) => 
+        globalStore.restaurant.selectedRestaurant.restaurant)
+    const dispatch = useDispatch();
+    useEffect(() => {
+        reduxState && 
+            dispatch(getFoodList(reduxState.menu)).then((data) =>
+                setMenu(data.payload.menus.menus)
+        );
+    })
     return (
         <>
             <div className="w-full h-screen flex">

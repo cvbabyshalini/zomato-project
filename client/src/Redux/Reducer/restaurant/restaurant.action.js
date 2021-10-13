@@ -21,7 +21,7 @@ export const getSpecificRestaurant = (_id) => async (dispatch) => {
             method: "GET",
             url: `http://localhost:4000/restaurant/${_id}`,
         });
-        return dispatch({type: GET_SPECIFIC_RESTAURANT, payload: restaurant.data })
+        return dispatch({type: GET_SPECIFIC_RESTAURANT, payload: restaurant.data });
     } catch (error) {
         return dispatch({ type: "ERROR", payload: error});
     }
