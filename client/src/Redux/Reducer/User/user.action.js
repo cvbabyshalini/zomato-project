@@ -10,7 +10,7 @@ export const getUser = (_id) => async (dispatch) => {
       url: `http://localhost:4000/user/${_id}`,
     });
 
-    return dispatch({ type: GET_USER, payload: User.data });
+    return dispatch({payload: User.data });
   } catch (error) {
     return dispatch({ type: "ERROR", payload: error });
   }

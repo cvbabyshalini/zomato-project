@@ -14,7 +14,7 @@ Params    _id
 Access    Public
 Method    GET  
 */
-Router.get("/list/_id", async (req, res) => {
+Router.get("/list/:_id", async (req, res) => {
     try{
         const { _id } = req.params;
         const menus = await MenuModel.findById(_id);
@@ -32,7 +32,7 @@ Params    _id
 Access    Public
 Method    GET  
 */
-Router.get("/image/_id", async (req, res) => {
+Router.get("/image/:_id", async (req, res) => {
     try{
         const { _id } = req.params;
         const menus = await ImageModel.findOne(_id);

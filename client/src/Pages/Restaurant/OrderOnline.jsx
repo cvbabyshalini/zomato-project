@@ -1,7 +1,7 @@
-import React, { useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import { AiOutlineCompass } from "react-icons/ai"
 import { BiTimeFive } from "react-icons/bi"
-import { useDispatch, useSelector} from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 
 //components
 import FloatMenuBtn from '../../Components/Restaurant/Order-Online/FloatMenuBtn'
@@ -13,22 +13,39 @@ import { getFoodList } from '../../Redux/Reducer/Food/food.action'
 
 const OrderOnline = () => {
     const [menu, setMenu] = useState([]);
-    const reduxState = useSelector((globalStore) => 
-        globalStore.restaurant.selectedRestaurant.restaurant)
+    const [selected, setSelected] = useState("");
+
+    const onClickHandler = (e) => {
+        if (e.target.id) {
+            setSelected(e.target.id);
+        }
+        return;
+    };
+    const reduxState = useSelector(
+        (globalStore) => globalStore.restaurant.selectedRestaurant.restaurant
+    );
     const dispatch = useDispatch();
+
     useEffect(() => {
-        reduxState && 
+        reduxState &&
             dispatch(getFoodList(reduxState.menu)).then((data) =>
                 setMenu(data.payload.menus.menus)
-        );
-    })
+                
+            );
+    }, [reduxState]);
+
     return (
         <>
             <div className="w-full h-screen flex">
                 <aside className="hidden md:block flex-col gap-3 border-r overflow-y-scroll border-gray-200 h-screen w-1/4">
-                    <MenuListContainer />
-                    <MenuListContainer />
-                    <MenuListContainer />
+                    {menu.map((item) => (
+                        <MenuListContainer
+                            {...item}
+                            key={item._id}
+                            onClickHandler={onClickHandler}
+                            selected={selected}
+                        />
+                    ))}
                 </aside>
                 <div className="w-full px-3 md:w-3/4">
                     <div className="pl-3 my-4">
@@ -39,21 +56,10 @@ const OrderOnline = () => {
                             <AiOutlineCompass /> Live Track Your Order | <BiTimeFive /> 45 min
                         </h4>
                     </div>
-                    <section className="flex h-screen overflow-y-scroll flex-col gap-3 md:gap-5">
-                        <FoodList 
-                            title="Recommended"
-                            items={[
-                                {
-                                    price:"325",
-                                    rating:3,
-                                    description:"[Served with 1 Gulab Jamun & Mint Raita] In this immaculately balanced culinary masterpiece, diced fresh vegetables infused with succulent pieces of spiced paneer are layered on a bed of aromatic rice.",
-                                    title:"Paneer Subz (Classic Paneer and Veg Biryani - Serves 1)",
-                                    image:
-                                        "https://b.zmtcdn.com/data/dish_photos/51f/c5feab5fcf17681584c66db2f9cda51f.jpg",
-
-                                },
-                            ]}
-                        />
+                    <section className="flex  h-screen overflow-y-scroll flex-col gap-3 md:gap-5">
+                        {menu.map((item) => (
+                            <FoodList key={item._id} {...item} />
+                        ))}
                     </section>
                 </div>
             </div>

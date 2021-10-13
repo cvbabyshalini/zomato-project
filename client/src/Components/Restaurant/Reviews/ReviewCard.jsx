@@ -28,7 +28,7 @@ const ReviewCard = (props) => {
                         </div>
                         <div className="flex flex-col">
                             <h3 className="text-lg font-semibold">{user?.fullname}</h3>
-                            <small className="text-gray-500">5 Reviews &#8226; 3 followes</small>
+                            <small className="text-gray-500">5 Reviews &#8226; 3 followers</small>
                         </div>
                     </div>
                     <button className="text-zomato-400 border border-zomato-400 py-2 px-4 rounded-lg">Follow</button>
@@ -36,7 +36,7 @@ const ReviewCard = (props) => {
                 <div className="flex flex-col gap-3">
                     <div className="flex items-center gap-3">
                         <span className="text-white text-xs bg-green-700 px-2 py-1 rounded-lg flex itmes-center gap-1">
-                            3<TiStarFullOutline />
+                            {props.rating}<TiStarFullOutline />
                         </span>
                         <h5 className="font-regula uppercase">{props.isRestaurantReview ? "Dining" : "Delivery"}</h5>
                         <small className="text-gray-500">{dayjs(props.createdAt).format("DD MM YYYY")}</small>

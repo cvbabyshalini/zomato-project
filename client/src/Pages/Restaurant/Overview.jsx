@@ -17,7 +17,7 @@ import { getImage } from '../../Redux/Reducer/Image/image.action'
 import { getReviews } from '../../Redux/Reducer/Reviews/review.action'
 
 const Overview = () => {
-    const [menuImage, setMenuImages] = useState({ images: [] });
+    const [menuImages, setMenuImages] = useState({ images: [] });
     const [Reviews, setReviews] = useState([]);
     const { id } = useParams();
 
@@ -39,7 +39,7 @@ const Overview = () => {
     const dispatch = useDispatch();
     useEffect(() => {
         if (reduxState) {
-            dispatch(getImage(reduxState?.menuImage)).then((data) => {
+            dispatch(getImage(reduxState?.menuImages)).then((data) => {
                 const images = [];
                 data.payload.image.images.map(({ location }) => images.push(location));
                 setMenuImages(images);
@@ -76,7 +76,7 @@ const Overview = () => {
                         <MenuCollection
                             menuTitle="Menu"
                             pages="3"
-                            image={menuImage}
+                            image={menuImages}
                         />
                     </div>
                     <h4 className="text-lg font-medium my-4">Cuisines</h4>
