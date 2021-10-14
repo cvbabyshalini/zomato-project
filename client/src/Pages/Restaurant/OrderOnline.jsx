@@ -56,7 +56,7 @@ const OrderOnline = () => {
                             <AiOutlineCompass /> Live Track Your Order | <BiTimeFive /> 45 min
                         </h4>
                     </div>
-                    <section className="flex  h-screen overflow-y-scroll flex-col gap-3 md:gap-5">
+                    <section className="flex h-screen overflow-y-scroll flex-col gap-3 md:gap-5">
                         {menu.map((item) => (
                             <FoodList key={item._id} {...item} />
                         ))}

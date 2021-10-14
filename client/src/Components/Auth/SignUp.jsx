@@ -3,18 +3,18 @@ import { Fragment, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { useDispatch } from "react-redux";
 
-import { signIn } from "../../Redux/Reducer/Auth/auth.action";
-
-export default function SignIn({ isOpen, setIsOpen }) {
+import { signUp } from "../../Redux/Reducer/Auth/auth.action";
+export default function SignUp({ isOpen, setIsOpen }) {
   const [userData, setUserData] = useState({
     email: "",
     password: "",
+    fullname: "",
   });
 
   const dispatch = useDispatch();
 
   const handleChange = (e) =>
-    setUserData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    setUserData((prev) => ({ ...prev, [e.target.id]: e.target.value }));
 
   function closeModal() {
     setIsOpen(false);
@@ -24,10 +24,10 @@ export default function SignIn({ isOpen, setIsOpen }) {
     setUserData({
       email: "",
       password: "",
+      fullname: "",
     });
-    dispatch(signIn(userData));
+    dispatch(signUp(userData));
   };
-
   const googlesignin = () =>
     (window.location.href = "http://localhost:4000/auth/google");
 
@@ -78,18 +78,28 @@ export default function SignIn({ isOpen, setIsOpen }) {
                     onClick={googlesignin}
                     className="py-2 justify-center rounded-lg flex items-center gap-2 w-full border border-gray-400 bg-white text-gray-700 hover:bg-gray-100"
                   >
-                    Signin With Google <FcGoogle />
+                    Sign up With Google <FcGoogle />
                   </button>
 
                   <form className="flex flex-col gap-3">
                     <div className=" w-full flex flex-col gap-2">
-                      <label htmlFor="email">Email</label>
+                      <label htmlFor="fullname">Fullname</label>
                       <input
                         type="text"
-                        id="email"
-                        name="email"
+                        id="fullname"
+                        value={userData.fullname}
                         onChange={handleChange}
+                        placeholder="John Doe"
+                        className="w-full border border-gray-400 px-3 py-2 rounded-lg focus:outline-none focus:border-zomato-400"
+                      />
+                    </div>
+                    <div className=" w-full flex flex-col gap-2">
+                      <label htmlFor="email">Email</label>
+                      <input
+                        type="email"
+                        id="email"
                         value={userData.email}
+                        onChange={handleChange}
                         placeholder="email@email.com"
                         className="w-full border border-gray-400 px-3 py-2 rounded-lg focus:outline-none focus:border-zomato-400"
                       />
@@ -99,10 +109,9 @@ export default function SignIn({ isOpen, setIsOpen }) {
                       <input
                         type="password"
                         id="password"
-                        placeholder="*********"
                         value={userData.password}
-                        name="password"
                         onChange={handleChange}
+                        placeholder="*********"
                         className="w-full border border-gray-400 px-3 py-2 rounded-lg focus:outline-none focus:border-zomato-400"
                       />
                     </div>
@@ -110,7 +119,7 @@ export default function SignIn({ isOpen, setIsOpen }) {
                       onClick={submit}
                       className="w-full  text-center bg-zomato-400 text-white py-2 rounded-lg"
                     >
-                      Sign in
+                      Sign up
                     </div>
                   </form>
                 </div>

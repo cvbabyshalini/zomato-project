@@ -127,9 +127,9 @@ const Overview = () => {
                             activeColor="#ffd700"
                         />,
                     </div>
-                    {Reviews.map((reviewData) => (
+                    {/* {Reviews.map((reviewData) => (
                         <ReviewCard {...reviewData}/>
-                    ))}
+                    ))} */}
                     <div className="my-4 w-full md:hidden flex flex-col gap-4">
                     <Mapview
                         title={reduxState?.name}
@@ -138,9 +138,9 @@ const Overview = () => {
                         address={reduxState?.address} />
                     </div>
                     <div className="my-4" flex flex-col gap-4>
+                        {/* <ReviewCard />
                         <ReviewCard />
-                        <ReviewCard />
-                        <ReviewCard />
+                        <ReviewCard /> */}
                     </div>
                 </div>
                 <aside
