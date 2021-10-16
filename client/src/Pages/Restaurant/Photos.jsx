@@ -1,41 +1,55 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import ImageViewer from 'react-simple-image-viewer';
 
 // components
 import PhotoCollection from '../../Components/Restaurant/PhotosCollection';
 
+// redux actions
+import { getImage } from '../../Redux/Reducer/Image/image.action';
+
 const Photos = () => {
-    const [photos, setPhotos] = useState(["https://b.zmtcdn.com/data/pictures/5/19667425/b955834a8b225850059110523337d27d.jpg",
-    "https://b.zmtcdn.com/data/pictures/5/19667425/eabe6744286fb002e60cce8724f4cbee.jpg", 
-    "https://b.zmtcdn.com/data/pictures/5/19667425/e2ba9b7f4ea92834afaaa2409e6ada64.jpg"]);
+    const [photos, setPhotos] = useState([]);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [CurrentImg, setCurrentImg] = useState(0);
+  
+    const reduxState = useSelector(
+      (globalStore) => globalStore.restaurant.selectedRestaurant.restaurant
+    );
+    const dispatch = useDispatch();
+  
+    useEffect(() => {
+      if (reduxState) {
+        dispatch(getImage(reduxState?.photos)).then((data) => {
+          const images = [];
+          data.payload.image.images.map(({ location }) => images.push(location));
+          setPhotos(images);
+        });
+      }
+    }, []);
     const closeViewer = () => setIsMenuOpen(false);
+  
     const openViewer = () => setIsMenuOpen(true);
+  
     return (
-        <>
-            {isMenuOpen && (
-                <ImageViewer
-                    src={photos}
-                    currentIndex={CurrentImg}
-                    disableScroll={false}
-                    closeOnClickOutside={true}
-                    onClose={closeViewer}
-                />
-            )}
+      <>
+        {isMenuOpen && (
+          <ImageViewer
+            src={photos}
+            currentIndex={CurrentImg}
+            disableScroll={false}
+            onClose={closeViewer}
+          />
+        )}
+  
+        <div className="flex flex-wrap gap-2">
+          {photos.map((photo) => (
+            <PhotoCollection image={photo} openViewer={openViewer} />
+          ))}
+        </div>
+      </>
+    );
+  };
+  
 
-            <div className="flex flex-wrap gap-2">
-            {
-                photos.map((photo) => 
-                <PhotoCollection
-                    image={photo}
-                    openViewer={openViewer}
-                />
-                )
-            }
-            </div>
-        </>
-    )
-}
-
-export default Photos
+export default Photos;

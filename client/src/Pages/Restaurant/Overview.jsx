@@ -125,22 +125,20 @@ const Overview = () => {
                             onChange={ratingChanged}
                             size={24}
                             activeColor="#ffd700"
-                        />,
+                        />
+                        {Reviews.map((reviewData) => (
+                            <ReviewCard {...reviewData} />
+                        ))}
                     </div>
-                    {/* {Reviews.map((reviewData) => (
-                        <ReviewCard {...reviewData}/>
-                    ))} */}
                     <div className="my-4 w-full md:hidden flex flex-col gap-4">
-                    <Mapview
-                        title={reduxState?.name}
-                        phno={`+91${reduxState?.contactNumber}`}
-                        mapLocation={getLanLong(reduxState?.mapLocation)}
-                        address={reduxState?.address} />
+                        <Mapview
+                            title={reduxState?.name}
+                            phno={`+91${reduxState?.contactNumber}`}
+                            mapLocation={getLanLong(reduxState?.mapLocation)}
+                            address={reduxState?.address} />
                     </div>
                     <div className="my-4" flex flex-col gap-4>
-                        {/* <ReviewCard />
-                        <ReviewCard />
-                        <ReviewCard /> */}
+                        
                     </div>
                 </div>
                 <aside

@@ -11,7 +11,7 @@ import SignIn from "../Auth/SignIn";
 import SignUp from "../Auth/SignUp";
 
 // redux actions
-import { signOut } from "../../Redux/Reducer/Auth/Auth.action";
+import { signOut } from "../../Redux/Reducer/Auth/auth.action";
 
 const MobileNav = ({ SignIn, SignUp }) => {
   const [isDropDownOpen, setIsDropDownOpen] = useState(false);

@@ -31,9 +31,9 @@ const Reviews = () => {
                 <AddReviewCard/>
                 </div>
                     {
-                        // reviews.map((review) => (
-                        //     <ReviewCard {...review} />
-                        // ))
+                         reviews.map((review) => (
+                             <ReviewCard {...review} />
+                         ))
                     }
                 </div>
                 <aside
