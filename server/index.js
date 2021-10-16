@@ -20,6 +20,7 @@ import Image from  "./API/Image";
 import Order from "./API/Orders";
 import Reviews from "./API/Reviews";
 import User from "./API/User";
+import Payments from "./API/Payments"
 
 // Database connection
 import ConnectDB from "./database/connection";
@@ -34,6 +35,7 @@ zomato.use(cors());
 zomato.use(passport.initialize());
 zomato.use(passport.session());
 
+
 // passport cofiguration
 googleAuthConfig(passport);
 routeConfig(passport);
@@ -47,6 +49,7 @@ zomato.use("/image", Image);
 zomato.use("/order", Order);
 zomato.use("/reviews", Reviews);
 zomato.use("/user", User);
+zomato.use("/payments", Payments);
 
 zomato.get("/", (req, res) => res.json({ message: "Setup success" }));
 

@@ -16,12 +16,13 @@ const ReviewCard = (props) => {
 
   return (
     <>
-      <div className="my-3 flex flex-col gap-3">
+     <div className="mb-28">
+     <div className="my-3 flex flex-col gap-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <div className="w-10 h-10 rounded-full">
               <img
-                src="https://b.zmtcdn.com/data/user_profile_pictures/d76/cc84183f68cc34027812bdf62585cd76.jpg?fit=around%7C100%3A100&crop=100%3A100%3B%2A%2C%2A"
+                src="https://b.zmtcdn.com/images/user_avatars/cupcake.png?fit=around%7C100%3A100&crop=100%3A100%3B%2A%2C%2A"
                 alt="avatar"
                 className="w-full h-full rounded-full object-cover"
               />
@@ -56,6 +57,7 @@ const ReviewCard = (props) => {
           </div>
         </div>
       </div>
+     </div>
     </>
   );
 };

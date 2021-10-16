@@ -1,8 +1,8 @@
-import { useState } from 'react'
-import { RadioGroup } from '@headlessui/react'
+import { useState } from "react";
+import { RadioGroup } from "@headlessui/react";
 
 export default function AddressList(props) {
-  const [selected, setSelected] = useState(props.address[0])
+  const [selected, setSelected] = useState(props.address[0]);
 
   return (
     <div className="w-full">
@@ -17,11 +17,13 @@ export default function AddressList(props) {
                 className={({ active, checked }) =>
                   `${
                     active
-                      ? 'ring-2 ring-offset-2 ring-offset-zomato-300 ring-white ring-opacity-60'
-                      : ''
+                      ? "ring-2 ring-offset-2 ring-offset-zomato-300 ring-white ring-opacity-60"
+                      : ""
                   }
                   ${
-                    checked ? 'bg-zomato-100 bg-opacity-75 text-zomato-600' : 'bg-white'
+                    checked
+                      ? "bg-zomato-100 bg-opacity-75 text-zomato-600"
+                      : "bg-white"
                   }
                     relative rounded-lg shadow-md px-5 py-4 cursor-pointer flex focus:outline-none`
                 }
@@ -34,7 +36,7 @@ export default function AddressList(props) {
                           <RadioGroup.Label
                             as="p"
                             className={`font-medium  ${
-                              checked ? 'text-zomato-600' : 'text-gray-900'
+                              checked ? "text-zomato-600" : "text-gray-900"
                             }`}
                           >
                             {item.name}
@@ -42,7 +44,7 @@ export default function AddressList(props) {
                           <RadioGroup.Description
                             as="span"
                             className={`inline ${
-                              checked ? 'text-zomato-500' : 'text-gray-500'
+                              checked ? "text-zomato-500" : "text-gray-500"
                             }`}
                           >
                             <address>{item.address}</address>
@@ -63,7 +65,7 @@ export default function AddressList(props) {
         </RadioGroup>
       </div>
     </div>
-  )
+  );
 }
 
 function CheckIcon(props) {
@@ -78,5 +80,5 @@ function CheckIcon(props) {
         strokeLinejoin="round"
       />
     </svg>
-  )
+  );
 }
